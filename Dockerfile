@@ -1,6 +1,13 @@
 # Use the base image with nginx
 FROM nginx:latest
 
+# Install git in the container
+RUN apt-get update && apt-get install -y git
+
+# Clone the repository and copy the nginx.conf file
+RUN git clone  https://github.com/navya-navya/test.git /tmp/repo
+RUN cp /tmp/repo/test/nginx.conf /etc/nginx/nginx.conf
+
 # Copy your nginx configuration to the container
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
