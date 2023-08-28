@@ -10,7 +10,7 @@ COPY nginx.conf /etc/nginx/conf.d/
 # Copy your Maven project's target directory to the container
 #COPY target/ /usr/share/nginx/html
 # Copy the index.html file from Docker context to the Nginx HTML directory
-COPY index.html /usr/share/nginx/html
+COPY test/index.html /usr/share/nginx/html
 
 # Expose the desired port
 EXPOSE 9000
