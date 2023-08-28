@@ -1,17 +1,17 @@
-# Use the official Nginx image as the base image
-FROM nginx
+# Use the base image with nginx
+FROM nginx:latest
 
-# Remove the default Nginx configuration
+# Remove default nginx configuration
 RUN rm /etc/nginx/conf.d/default.conf
 
-# Copy your custom Nginx configuration
+# Copy your nginx configuration to the container
 COPY nginx.conf /etc/nginx/conf.d/
 
-# Copy the built WAR file into the Nginx HTML directory
-COPY target/*.war /usr/share/nginx/html/
+# Copy your Maven project's target directory to the container
+COPY target/ /usr/share/nginx/html
 
-# Expose port 90 as defined in your nginx.conf
-EXPOSE 90
+# Expose the desired port
+EXPOSE 9000
 
-# Start Nginx when the container runs
+# CMD instruction to start nginx as the main process
 CMD ["nginx", "-g", "daemon off;"]
