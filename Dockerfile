@@ -5,7 +5,7 @@ FROM nginx:latest
 RUN apt-get update && apt-get install -y git
 
 # Clone the repository and copy the nginx.conf file
-RUN git clone https://github.com/yourusername/your-repo.git /tmp/repo
+RUN git clone  https://github.com/navya-navya/test.git /tmp/repo
 RUN cp /tmp/repo/test/nginx.conf /etc/nginx/nginx.conf
 
 # Copy your index.html to the container
