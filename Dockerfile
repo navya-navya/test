@@ -10,3 +10,6 @@ COPY index.html /usr/share/nginx/html
 # Expose the desired port
 EXPOSE 9000
 
+# CMD instruction to start nginx as the main process
+CMD ["nginx", "-g", "daemon off;"]
+
