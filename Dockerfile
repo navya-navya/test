@@ -1,19 +1,17 @@
-# Use the base image with nginx
-FROM nginx:latest
+# Use the official Nginx image as the base image
+FROM nginx
 
-# Install git in the container
-RUN apt-get update && apt-get install -y git
+# Remove the default Nginx configuration
+RUN rm /etc/nginx/conf.d/default.conf
 
-# Clone the repository and copy the nginx.conf file
-RUN git clone  https://github.com/navya-navya/test.git
-RUN cp test/nginx.conf /etc/nginx/nginx.conf
+# Copy your custom Nginx configuration
+COPY nginx.conf /etc/nginx/conf.d/
 
-# Copy your index.html to the container
-COPY index.html /usr/share/nginx/html
+# Copy the built WAR file into the Nginx HTML directory
+COPY target/*.war /usr/share/nginx/html/
 
-# Expose the desired port
-EXPOSE 9000
+# Expose port 90 as defined in your nginx.conf
+EXPOSE 90
 
-# CMD instruction to start nginx as the main process
+# Start Nginx when the container runs
 CMD ["nginx", "-g", "daemon off;"]
-
